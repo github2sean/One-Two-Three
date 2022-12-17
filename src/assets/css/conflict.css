@@ -1,0 +1,28 @@
+.vditor {
+  margin: auto;
+}
+
+.v-vditor .vditor-wysiwyg>.vditor-reset>h1:before,
+.v-vditor .vditor-wysiwyg>.vditor-reset>h2:before,
+.v-vditor .vditor-wysiwyg>.vditor-reset>h3:before,
+.v-vditor .vditor-wysiwyg>.vditor-reset>h4:before,
+.v-vditor .vditor-wysiwyg>.vditor-reset>h5:before,
+.v-vditor .vditor-wysiwyg>.vditor-reset>h6:before,
+.v-vditor .vditor-wysiwyg div.vditor-wysiwyg__block:before,
+.v-vditor .vditor-wysiwyg div[data-type="link-ref-defs-block"]:before,
+.v-vditor .vditor-wysiwyg div[data-type="footnotes-block"]:before,
+.v-vditor .vditor-wysiwyg .vditor-toc:before {
+  font-size: inherit;
+}
+
+.v-vditor .vditor-ir .vditor-reset>h1:before,
+.v-vditor .vditor-ir .vditor-reset>h2:before,
+.v-vditor .vditor-ir .vditor-reset>h3:before,
+.v-vditor .vditor-ir .vditor-reset>h4:before,
+.v-vditor .vditor-ir .vditor-reset>h5:before,
+.v-vditor .vditor-ir .vditor-reset>h6:before,
+.v-vditor .vditor-ir div[data-type="link-ref-defs-block"]:before,
+.v-vditor .vditor-ir div[data-type="footnotes-block"]:before,
+.v-vditor .vditor-ir .vditor-toc:before {
+  font-size: inherit;
+}

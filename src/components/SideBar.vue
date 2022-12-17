@@ -20,6 +20,7 @@
   </div>
 </template>
 <script setup>
+import gsap from 'gsap';
 let isShowLeft = ref(true)
 let toggelBar = (obj) => {
   let el = document.querySelector(".left")

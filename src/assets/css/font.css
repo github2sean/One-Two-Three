@@ -1,0 +1,12 @@
+@font-face {
+  font-family: cat;
+  src: url('/fonts/cat.ttf') format('truetype'),
+    url('/fonts/cat.otf') format('opentype');
+  unicode-range: U+000-5FF;
+}
+
+@font-face {
+  font-family: MiSans;
+  src: url('/fonts/MiSans-Normal.ttf') format('truetype');
+  unicode-range: U+000-5FF;
+}
