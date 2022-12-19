@@ -2,12 +2,12 @@
  * @Author: sean seanzq0331@163.com
  * @Date: 2022-12-14 18:33:19
  * @LastEditors: sean seanzq0331@163.com
- * @LastEditTime: 2022-12-18 02:54:43
+ * @LastEditTime: 2022-12-20 00:34:39
  * @FilePath: /vite-vue3-pro/src/components/Header.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <transition name="fade">
+  <transition name="fade" mode="out-in">
     <div class="nav" v-show="show && isShow" ref="nav">
       <div class="left">
         <div class="logo">
@@ -19,19 +19,24 @@
       <div class="center reverse-color">
         <ul class="items">
           <router-link to="/">
-            <li><i class="fa fa-home"></i>主页</li>
+            <li @mouseleave="active(false, $event)" @mouseenter="active(true, $event)"><i class="fa fa-home"></i>主页
+            </li>
           </router-link>
           <router-link to="/recomment">
-            <li><i class="fa fa-star"></i>推荐</li>
+            <li @mouseleave="active(false, $event)" @mouseenter="active(true, $event)"><i class="fa fa-star"></i>推荐</li>
           </router-link>
           <router-link to="/write">
-            <li><i class="fa fa-book"></i>笔记</li>
+            <li @mouseleave="active(false, $event)" @mouseenter="active(true, $event)"><i class="fa fa-book"></i>笔记</li>
           </router-link>
           <router-link to="/snippet">
-            <li><i class="fa fa-list-alt"></i>snippet</li>
+            <li @mouseleave="active(false, $event)" @mouseenter="active(true, $event)"><i
+                class="fa fa-list-alt"></i>snippet
+            </li>
           </router-link>
           <router-link to="/userInfo">
-            <li><i class="fa fa-user-circle"></i>我的</li>
+            <li @mouseleave="active(false, $event)" @mouseenter="active(true, $event)"><i
+                class="fa fa-user-circle"></i>我的
+            </li>
           </router-link>
         </ul>
       </div>
@@ -72,16 +77,26 @@ let scrollListener = () => {
     console.log("滚动距离" + topOffset, "nav", navHeight, downScroll)
     if (!downScroll && (!show.value)) {
       show.value = true
+      el.style.backgroundColor = '#D9D9D8'
     } else if (downScroll && topOffset > 0) {
       show.value = false
-    } else if (topOffset == 0) {
-      el.style.color = '#0f0'
-    } else {
-      el.style.color = '#000'
+    }
+    if (topOffset == 0) {
+      console.log('aaaa')
+      el.style.backgroundColor = 'rgba(59,59,59, 0.8)'
     }
 
   }
 
+}
+let active = (active, event) => {
+  let el = event.target
+  if (active) {
+    el.classList.add('active')
+  } else {
+    el.classList.remove('active')
+  }
+  console.log(el.classList)
 }
 
 onMounted(() => {
@@ -92,24 +107,24 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .fade-enter-active {
-  animation: down .5s;
+  animation: down .8s;
 }
 
 .fade-leave-active {
-  animation: down .5s reverse;
+  animation: down .8s reverse;
 }
 
 @keyframes down {
   from {
     opacity: 0;
     transform: translateY(0);
-    background-color: rgba(#fff, 0.4);
+    // background-color: rgba(#fff, 0.4);
   }
 
   to {
     opacity: 1;
     transform: translateY(100);
-    background-color: rgba(#fff, 0.4);
+    // background-color: rgba(#fff, 0.4);
 
   }
 }
@@ -121,7 +136,8 @@ onMounted(() => {
   height: .5rem;
   // border-bottom-left-radius: .1rem;
   // border-bottom-right-radius: .1rem;
-  position: absolute;
+  position: fixed;
+
   top: 0;
   left: 0;
   display: flex;
@@ -129,7 +145,7 @@ onMounted(() => {
   align-items: center;
   font-size: .14rem;
   font-weight: 50;
-  transition: all 1s;
+  transition: all .5s;
   background-color: rgba(#3B3B3B, 0.8);
 
   .left {
@@ -176,6 +192,11 @@ onMounted(() => {
         margin-left: .2rem;
         text-align: right;
         cursor: pointer;
+        position: relative;
+
+        &.active ::after {
+          background-color: #fff;
+        }
 
         i {
           margin-right: .05rem;
@@ -183,12 +204,11 @@ onMounted(() => {
 
         ::after {
           position: absolute;
-          bottom: 0;
+          bottom: .1rem;
           left: 0;
           z-index: -1;
-          width: 10px;
+          width: 100%;
           height: 3px;
-          background-color: #9892ff;
           content: '';
           -webkit-transition: all 0.3s ease-in-out;
           -moz-transition: all 0.3s ease-in-out;

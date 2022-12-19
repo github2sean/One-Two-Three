@@ -2,7 +2,7 @@
  * @Author: sean seanzq0331@163.com
  * @Date: 2022-12-18 14:03:58
  * @LastEditors: sean seanzq0331@163.com
- * @LastEditTime: 2022-12-19 18:40:32
+ * @LastEditTime: 2022-12-20 00:12:26
  * @FilePath: /vite-vue3-pro/src/components/StickyNote.vue
  * @Description: 可拖拽便签
 -->
@@ -110,15 +110,13 @@ let initContainer = () => {
   console.log('init', props)
 }
 onMounted(() => {
-  // initContainer()
-  // getSelfPosition()
+  initContainer()
+  getSelfPosition()
 })
 </script>
 <style scoped lang="scss">
 .drag-sticky {
   position: absolute;
-  // background-image: url('/sticky.png');
-  // background-size: 100% 100%;
   background-color: rgba($color: #54BB8E, $alpha: .9);
   display: flex;
   align-items: center;
@@ -129,6 +127,7 @@ onMounted(() => {
   padding: .13rem .15rem;
   border-radius: .06rem;
   gap: .03rem;
+  flex: 1;
   // margin-left: .04rem;
   // margin-top: .04rem;
 

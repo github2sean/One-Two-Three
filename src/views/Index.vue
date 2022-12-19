@@ -2,7 +2,7 @@
  * @Author: sean seanzq0331@163.com
  * @Date: 2022-12-16 00:13:20
  * @LastEditors: sean seanzq0331@163.com
- * @LastEditTime: 2022-12-19 21:41:07
+ * @LastEditTime: 2022-12-19 22:19:30
  * @FilePath: /vite-vue3-pro/src/views/Home.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -72,19 +72,11 @@
       </transition>
     </div>
 
-    <!-- <div class="sticky" ref="stickyBox">
-      <StickyNoteVue v-for="(item, index) in stickys" :key="item.order" :content="item.content"
-        @getPosition="getChildPosition" :position="item.position" :order="item.order"></StickyNoteVue>
-    </div> -->
-    <div class="sticky">
-      <div :fit-width="true" :horizontal-order="true" ref="stickyBox" v-masonry transition-duration="0.3s"
-        item-selector=".item" stagger="0.03s">
-        <StickyNoteVue :content="item.content" v-masonry-tile class="item" v-for="(item, index) in stickys">
-          <!-- block item markup -->
-        </StickyNoteVue>
-      </div>
+    <div class="sticky" ref="stickyBox">
+      <StickyNote v-for="(item, index) in stickys" :key="item.order" :content="item.content"
+        @getPosition="getChildPosition" :position="item.position" :order="item.order">
+      </StickyNote>
     </div>
-
   </div>
 </template>
 <script setup>
@@ -93,7 +85,7 @@ import { useMessage } from "naive-ui";
 import axios from 'axios'
 import _ from "lodash"
 import moment from "moment"
-import StickyNoteVue from '../components/StickyNote.vue';
+import StickyNote from '../components/StickyNote.vue';
 let loadedWirte = ref(false)
 let introduction = ref("")
 let textarea = ref("")
@@ -121,28 +113,28 @@ let getChildPosition = (val) => {
 
 }
 
+let horizonList = [{ row: 0, num: 0 }]
 let addSticky = (text) => {
   console.log(stickyBox)
-
   let stickyBoxWidth = stickyBox.value.clientWidth
   let stickyBoxHeight = stickyBox.value.clientHeight
   order += 100
   let x = 0, y = 0
+  let row = 0, num = 0
   console.log('fa', childPo, stickyList)
-  // if (stickyList.length > 0) {
-  //   x = childPo.position.x + childPo.position.width
-  //   y = childPo.position.y - childPo.position.margin
-  //   if (x + childPo.position.width >= stickyBoxWidth) {
-  //     x = 0
-  //     y = childPo.position.y + childPo.position.height
-  //   }
-  //   if (y + childPo.position.height > stickyBoxHeight) {
-  //     message.warning('装不下啦^_^')
-  //     return
-  //   }
-  // }
-  // let sticky = { content: text, position: { x: x, y: y }, order: order }
-  let sticky = { content: text, order: order }
+  if (stickyList.length > 0) {
+    x = childPo.position.x + childPo.position.width
+    y = childPo.position.y - childPo.position.margin
+    if (x + childPo.position.width >= stickyBoxWidth) {
+      x = 0
+      y = childPo.position.y + childPo.position.height
+    }
+    if (y + childPo.position.height > stickyBoxHeight) {
+      message.warning('装不下啦^_^')
+      return
+    }
+  }
+  let sticky = { content: text, position: { x: x, y: y }, order: order }
   stickyList.push(sticky)
 }
 
@@ -437,12 +429,12 @@ onUnmounted(() => {
 
 
   .sticky {
-    background-color: rgba(aqua, 0.3);
+    // background-color: rgba(aqua, 0.3);
     position: absolute;
     right: .2rem;
-    top: .5rem;
+    top: 20%;
     width: 5.8rem;
-    height: 5rem;
+    height: 4.5rem;
     display: flex;
     gap: .05rem;
   }
