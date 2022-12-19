@@ -14,9 +14,12 @@
     "axios": "^1.2.1",
     "gsap": "^3.11.3",
     "lodash": "^4.17.21",
+    "mitt": "^3.0.0",
+    "moment": "^2.29.4",
     "vditor": "^3.8.18",
     "vfonts": "^0.0.3",
     "vue": "^3.2.45",
+    "vue-masonry": "^0.16.0",
     "vue-router": "4"
   },
   "devDependencies": {

@@ -2,18 +2,20 @@
  * @Author: sean seanzq0331@163.com
  * @Date: 2022-12-10 01:12:49
  * @LastEditors: sean seanzq0331@163.com
- * @LastEditTime: 2022-12-17 23:29:18
+ * @LastEditTime: 2022-12-18 15:39:37
  * @FilePath: /vite-vue3-pro/src/App.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 
 
 <template>
-  <div class="page">
-    <Header></Header>
-    <Container></Container>
-    <Footer></Footer>
-  </div>
+  <n-message-provider>
+    <div class="page">
+      <Header></Header>
+      <Container></Container>
+      <Footer></Footer>
+    </div>
+  </n-message-provider>
 </template>
 
 
