@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .vscode/extensions.json
 pnpm-lock.yaml
+.history
